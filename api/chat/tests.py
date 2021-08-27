@@ -3,6 +3,8 @@ from channels.testing import ChannelsLiveServerTestCase
 from selenium import webdriver
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.support.wait import WebDriverWait
+options = webdriver.ChromeOptions()
+options.add_argument('--headless')
 
 
 class ChatTests(ChannelsLiveServerTestCase):
@@ -13,7 +15,7 @@ class ChatTests(ChannelsLiveServerTestCase):
         super().setUpClass()
         try:
             # NOTE: Requires "chromedriver" binary to be installed in $PATH
-            cls.driver = webdriver.Chrome()
+            cls.driver = webdriver.Remote("http://chrome:4444/wd/hub", options=options)
         except:
             super().tearDownClass()
             raise
