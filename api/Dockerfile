@@ -4,7 +4,8 @@ RUN pip install \
     django \
     channels \
     channels_redis \
-    selenium
+    selenium \
+    psycopg2
 
 WORKDIR /api
 
